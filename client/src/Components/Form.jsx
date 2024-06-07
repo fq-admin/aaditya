@@ -9,14 +9,14 @@ const Form = () => {
 
   // const navigate=useNavigate();
   const [text, setText] = useState('');
+
   const handleSubmitLink = async (event) => {
     event.preventDefault();
     
-    // navigate('/testLink');
     try {
       setText('scraping website... this may take a while');
       const response = await axios.post('http://localhost:3000/upload/link', {link});
-      console.log(response.data);
+      // console.log(response.data);
       setText(response.data);
     } catch (error) {
       console.error(error);
@@ -26,20 +26,27 @@ const Form = () => {
     event.preventDefault();
     const formData = new FormData();
     formData.append('file', file);
-
+    formData.append('name', file.name);
     setText('fetching data...');
-    try {
-      const response = await axios.post('http://localhost:3000/upload/file', formData,{
-        headers: {"Content-Type": "multipart/form-data"}
-      });
-      console.log(response.data);
-      setText(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-    // navigate('/testFile');
-  };
+    // try {
+    //   const response = await axios.post('http://localhost:3000/upload/file', formData,{
+    //     headers: {"Content-Type": "multipart/form-data"}
+    //   });
+    //   // console.log(response.data);
+    //   setText(response.data);
+    // } catch (error) {
+    //   console.error(error);
+    // }
 
+    axios.post('http://localhost:3000/upload/file', formData,
+    ).then(res=>{
+      console.log(res);
+      setText(res.data);
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  }
   return (<>
   <div className='container'>
     <div className='heading'>

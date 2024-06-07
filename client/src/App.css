@@ -12,13 +12,14 @@ textarea{
     border: 1px solid #d3100d;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    padding: 0px 10px;
   }
   
   .container {
       display: flex;
       align-items: center;
-      justify-content: space-evenly;
+      gap: 1vw;
+      /* justify-content: space-evenly; */
     }
     
     .form {
